@@ -5,6 +5,8 @@ Curso Udemy: Python 3 do básico ao avançado - com projetos reais
 Instrutor: Luiz Otávio Miranda
 """
 
+import re
+
 # Coletar CPF
 cpf = input ('Digite o seu CPF (Exemplo: 000.000.000-00): ')
 
@@ -14,12 +16,8 @@ if cpf == '':
 elif len(cpf) < 14 or len(cpf) > 14:
     print('Parece que seu CPF é menor ou maior que o esperado!')
 else:
-    # Tirar pontos do CPF
-    cpf_formatado = ''
-
-    for item in cpf:
-        if item != '.' and item != '-':
-            cpf_formatado += item
+    # Tirar pontos e traços do CPF
+    cpf_formatado = re.sub(r'[^0-9]', '', cpf)
 
     # Primeiro digito: Multiplicar valores por uma contagem regressiva começando de 10
     nove_digitos = cpf_formatado[:9]
